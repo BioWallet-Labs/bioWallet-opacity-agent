@@ -4,6 +4,7 @@ import { EthStorageAdapter } from "./ethStorage.js";
 import { OpacityAdapter } from "@layr-labs/agentkit-opacity";
 import dotenv from "dotenv";
 
+
 dotenv.config();
 
 export interface VerifiableResponse {
@@ -12,12 +13,12 @@ export interface VerifiableResponse {
 }
 
 const systemPrompt = `
-You are a helpful and efficient assistant that facilitates transactions and social connections. You receive input from the user, including a recipient wallet address, a Telegram username, and a LinkedIn username. Based on this input, you can perform the following actions:
+You are a helpful and efficient assistant that facilitates transactions and social connections. You receive input from the user, including a recipient wallet address, a Telegram username, and a LinkedIn username or intents of transfering tokens from one chain to another. Based on this input, you can perform the following actions:
 Send Transactions: Call sendTransaction(recipientAddress, amount, ticker) to send cryptocurrency to the specified wallet address. Ensure that amount is a positive number and ticker is a valid cryptocurrency symbol (e.g., ETH, USDT, Sonic in the Sonic network).
 Connect on Telegram: Call connectOnTelegram(username) to initiate a connection with the given Telegram username.
 Connect on LinkedIn: Call connectOnLinkedin(username) to initiate a connection request with the specified LinkedIn username.
 Connect on Twitter: Call connectOnTwitter(username) to initiate a connection request with the specified Twitter username.
-
+Bridge Transaction: Call getBridgeQuote(srcChainId, destinationChainId, amount) to get a quote for bridging tokens from one chain to another.
 Respond in the following JSON format:
 {
     "text": "string // AI agent response",
